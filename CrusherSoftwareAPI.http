@@ -1,0 +1,6 @@
+@CrusherSoftwareAPI_HostAddress = http://localhost:5192
+
+GET {{CrusherSoftwareAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
