@@ -1,8 +1,60 @@
 [
   {
     "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
+    "Method": "Delete",
+    "RelativePath": "api/Customer/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
     "Method": "GetAll",
-    "RelativePath": "api/Customer",
+    "RelativePath": "api/Customer/GetAllCustomer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
+    "Method": "GetCityName",
+    "RelativePath": "api/Customer/GetCityName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
+    "Method": "GetById",
+    "RelativePath": "api/Customer/GetCustomerById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
+    "Method": "GetCustomerName",
+    "RelativePath": "api/Customer/GetCustomerName",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -12,7 +64,7 @@
   {
     "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
     "Method": "Create",
-    "RelativePath": "api/Customer",
+    "RelativePath": "api/Customer/Save",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -27,24 +79,8 @@
   },
   {
     "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
-    "Method": "GetById",
-    "RelativePath": "api/Customer/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
     "Method": "Update",
-    "RelativePath": "api/Customer/{id}",
+    "RelativePath": "api/Customer/Update/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -57,22 +93,6 @@
       {
         "Name": "customer",
         "Type": "CrusherSoftwareAPI.Models.Customer",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
-    "Method": "Delete",
-    "RelativePath": "api/Customer/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

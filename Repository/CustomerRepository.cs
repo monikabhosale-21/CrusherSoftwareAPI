@@ -2,6 +2,7 @@
 using CrusherSoftwareAPI.IRepository;
 using CrusherSoftwareAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using CrusherSoftwareAPI.DTO;
 
 namespace CrusherSoftwareAPI.Repository
 {
@@ -26,6 +27,7 @@ namespace CrusherSoftwareAPI.Repository
 
         public async Task AddAsync(Customer customer)
         {
+            customer.IsActive = true;
             customer.CreatedDate = DateTime.UtcNow;
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
@@ -33,9 +35,22 @@ namespace CrusherSoftwareAPI.Repository
 
         public async Task UpdateAsync(Customer customer)
         {
-            customer.UpdatedDate = DateTime.UtcNow;
-            _context.Customers.Update(customer);
+            var existing = await _context.Customers.FindAsync(customer.CustomerId);
+            if (existing != null)
+            {
+                // Update properties
+                existing.CustomerName = customer.CustomerName;
+                existing.Mobile = customer.Mobile;
+                existing.OpeningDues = customer.OpeningDues;
+                existing.UpdatedDate = DateTime.UtcNow;
+                // etc...
+                _context.Customers.Update(existing);
+            }
             await _context.SaveChangesAsync();
+            //return Ok(existing);
+            //customer.UpdatedDate = DateTime.UtcNow;
+            //_context.Customers.Update(customer);
+            //await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
@@ -48,6 +63,25 @@ namespace CrusherSoftwareAPI.Repository
                 //_context.Customers.Remove(customer);
                 await _context.SaveChangesAsync();
             }
+        }
+        public async Task<IEnumerable<CommonDDL>> GetCustomerName()
+        {
+            return await _context.Customers.Where(c => c.IsActive == true)
+                    .Select(c => new CommonDDL
+                    {
+                        Id = c.CustomerId,
+                        Name = c.CustomerName
+                    })
+                    .ToListAsync(); 
+        }  public async Task<IEnumerable<CommonDDL>> GetCityName()
+        {
+            return await _context.Cities.Where(c => c.IsActive == true)
+                    .Select(c => new CommonDDL
+                    {
+                        Id = c.CityId,
+                        Name = c.CityName
+                    })
+                    .ToListAsync(); 
         }
     }
 }

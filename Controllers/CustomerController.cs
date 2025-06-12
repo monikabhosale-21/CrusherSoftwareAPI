@@ -16,14 +16,15 @@ namespace CrusherSoftwareAPI.Controllers
             _repository = repository;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllCustomer")]
         public async Task<IActionResult> GetAll()
         {
             var customers = await _repository.GetAllAsync();
             return Ok(new { message = "Customers retrieved successfully.", data = customers });
         }
+          
 
-        [HttpGet("{id}")]
+        [HttpGet("GetCustomerById")]
         public async Task<IActionResult> GetById(int id)
         {
             var customer = await _repository.GetByIdAsync(id);
@@ -33,7 +34,7 @@ namespace CrusherSoftwareAPI.Controllers
             return Ok(new { message = "Customer retrieved successfully.", data = customer });
         }
 
-        [HttpPost]
+        [HttpPost("Save")]
         public async Task<IActionResult> Create([FromBody] Customer customer)
         {
             await _repository.AddAsync(customer);
@@ -44,7 +45,7 @@ namespace CrusherSoftwareAPI.Controllers
             });
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Customer customer)
         {
             if (id != customer.CustomerId)
@@ -54,11 +55,27 @@ namespace CrusherSoftwareAPI.Controllers
             return Ok(new { message = "Customer updated successfully." });
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _repository.DeleteAsync(id);
             return Ok(new { message = "Customer deleted successfully." });
         }
+
+        [HttpGet("GetCustomerName")]
+        public async Task<IActionResult> GetCustomerName()
+        {
+            var customers = await _repository.GetCustomerName();
+            return Ok(new { message = "Customers Name retrieved successfully.", data = customers });
+        }
+
+
+        [HttpGet("GetCityName")]
+        public async Task<IActionResult> GetCityName()
+        {
+            var city = await _repository.GetCityName();
+            return Ok(new { message = "Customers Name retrieved successfully.", data = city });
+        }
+
     }
 }

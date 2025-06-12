@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Customer": {
+    "/api/Customer/GetAllCustomer": {
       "get": {
         "tags": [
           "Customer"
@@ -15,7 +15,31 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Customer/GetCustomerById": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/Save": {
       "post": {
         "tags": [
           "Customer"
@@ -46,28 +70,7 @@
         }
       }
     },
-    "/api/Customer/{id}": {
-      "get": {
-        "tags": [
-          "Customer"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+    "/api/Customer/Update/{id}": {
       "put": {
         "tags": [
           "Customer"
@@ -107,7 +110,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Customer/Delete/{id}": {
       "delete": {
         "tags": [
           "Customer"
@@ -122,6 +127,30 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/GetCustomerName": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Customer/GetCityName": {
+      "get": {
+        "tags": [
+          "Customer"
         ],
         "responses": {
           "200": {
