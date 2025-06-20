@@ -5,11 +5,11 @@ namespace CrusherSoftwareAPI.Models;
 
 public partial class Vehicle
 {
-    public int VehicleId { get; set; }
+    public int Vehicle_Id { get; set; }
 
-    public string? VehicleNo { get; set; }
+    public string Vehicle_No { get; set; } = null!;
 
-    public string? Emptyweight { get; set; }
+    public decimal? Empty_Weight { get; set; }
 
     public bool? IsActive { get; set; }
 

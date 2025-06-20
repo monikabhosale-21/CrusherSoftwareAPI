@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Customer/GetAllCustomer": {
       "get": {
         "tags": [
@@ -221,6 +252,10 @@
             "format": "int32",
             "nullable": true
           },
+          "cityName": {
+            "type": "string",
+            "nullable": true
+          },
           "openingDues": {
             "type": "string",
             "nullable": true
@@ -230,8 +265,7 @@
             "nullable": true
           },
           "isActive": {
-            "type": "boolean",
-            "nullable": true
+            "type": "boolean"
           },
           "createdby": {
             "type": "integer",
@@ -251,6 +285,20 @@
           "updatedDate": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequestDTO": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },

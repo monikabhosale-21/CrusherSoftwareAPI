@@ -28,6 +28,7 @@ namespace CrusherSoftwareAPI.Repository
         public async Task AddAsync(Customer customer)
         {
             customer.IsActive = true;
+            customer.Createdby = 1;
             customer.CreatedDate = DateTime.UtcNow;
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
@@ -37,13 +38,14 @@ namespace CrusherSoftwareAPI.Repository
         {
             var existing = await _context.Customers.FindAsync(customer.CustomerId);
             if (existing != null)
-            {
-                // Update properties
+            { 
                 existing.CustomerName = customer.CustomerName;
                 existing.Mobile = customer.Mobile;
                 existing.OpeningDues = customer.OpeningDues;
-                existing.UpdatedDate = DateTime.UtcNow;
-                // etc...
+                existing.CityId = customer.CityId;
+                existing.CustomerAddress = customer.CustomerAddress;
+                existing.Updatedby = 1;
+                existing.UpdatedDate = DateTime.UtcNow; 
                 _context.Customers.Update(existing);
             }
             await _context.SaveChangesAsync();
@@ -73,7 +75,8 @@ namespace CrusherSoftwareAPI.Repository
                         Name = c.CustomerName
                     })
                     .ToListAsync(); 
-        }  public async Task<IEnumerable<CommonDDL>> GetCityName()
+        } 
+        public async Task<IEnumerable<CommonDDL>> GetCityName()
         {
             return await _context.Cities.Where(c => c.IsActive == true)
                     .Select(c => new CommonDDL

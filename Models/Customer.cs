@@ -13,11 +13,13 @@ public partial class Customer
 
     public int? CityId { get; set; }
 
+    public string? CityName { get; set; }
+
     public string? OpeningDues { get; set; }
 
     public string? CustomerAddress { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public int? Createdby { get; set; }
 

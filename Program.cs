@@ -1,7 +1,11 @@
-using CrusherSoftwareAPI.Data;
+﻿using CrusherSoftwareAPI.Data;
 using CrusherSoftwareAPI.IRepository;
 using CrusherSoftwareAPI.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text; // Needed for JWT Key Encoding
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,30 +22,49 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Database
 builder.Services.AddDbContext<CrusherDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Repositories
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+// ✅ JWT Authentication - MUST be before app.Build()
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 var app = builder.Build();
 
+// Middleware
 app.UseRouting();
 app.UseCors("AllowReactApp");
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // Add this line
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
 
+app.UseHttpsRedirection();
+app.UseAuthentication();  // MUST be before Authorization
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

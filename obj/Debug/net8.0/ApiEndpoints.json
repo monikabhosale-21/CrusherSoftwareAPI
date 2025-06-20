@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "CrusherSoftwareAPI.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "CrusherSoftwareAPI.DTO.LoginRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "CrusherSoftwareAPI.Controllers.CustomerController",
     "Method": "Delete",
     "RelativePath": "api/Customer/Delete/{id}",
