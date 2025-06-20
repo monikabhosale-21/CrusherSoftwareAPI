@@ -13,6 +13,8 @@ public partial class Vendor
 
     public string? City { get; set; }
 
+    public string? OpeningDues { get; set; }
+
     public string? Address { get; set; }
 
     public string? GSTNo { get; set; }

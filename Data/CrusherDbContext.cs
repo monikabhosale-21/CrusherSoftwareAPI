@@ -72,10 +72,6 @@ public partial class CrusherDbContext : DbContext
 
     public virtual DbSet<VendorPayment> VendorPayments { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-145FM2A;Database=CrusherDB;User Id=sa;Password=admin@123;TrustServerCertificate=True;");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>(entity =>
@@ -645,7 +641,7 @@ public partial class CrusherDbContext : DbContext
 
         modelBuilder.Entity<Vendor>(entity =>
         {
-            entity.HasKey(e => e.VendId).HasName("PK__Vendor__42ABCAC5810E06A2");
+            entity.HasKey(e => e.VendId).HasName("PK__Vendor__42ABCAC5872EF17B");
 
             entity.ToTable("Vendor", "CrusherSchema");
 
@@ -655,6 +651,7 @@ public partial class CrusherDbContext : DbContext
             entity.Property(e => e.GSTNo).HasMaxLength(50);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Mobile).HasMaxLength(20);
+            entity.Property(e => e.OpeningDues).HasMaxLength(50);
             entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             entity.Property(e => e.VendName).HasMaxLength(150);
         });

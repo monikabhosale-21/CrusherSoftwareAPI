@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CrusherSoftwareAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c701f71021695f54e7c730937372279e575f2d2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bc756d0fbc112bf367ad09d3bb2d0254522f8fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("CrusherSoftwareAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CrusherSoftwareAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
